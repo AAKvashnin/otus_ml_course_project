@@ -1,0 +1,8 @@
+name: ComplaintClassifier
+
+conda_env: conda.yaml
+
+entry_points:
+  # train Spark model
+  main:
+    command: "python mlflow/train.py
