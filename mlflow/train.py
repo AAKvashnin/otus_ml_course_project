@@ -70,8 +70,8 @@ if __name__ == "__main__":
 
     f1=evaluator.evaluate(predictions)
 
-    mlflow.spark.save_model(model,"spark-model",mflow_model="spark-model")
-    mlflow.spark.log_model(model,"spark-model",registered_model_name="spark-model")
+    mlflow.spark.save_model(model,"spark-model")
+    mlflow.spark.log_model(model,"spark-model")
     mlflow.log_metric("f1_weighted",f1)
 
     spark.stop()
