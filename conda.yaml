@@ -6,4 +6,4 @@ dependencies:
   - pip=20.0.2
   - pip:
       - mlflow>=1.6
-      - spark>=0.2
+      - pyspark>=3.1
