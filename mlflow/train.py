@@ -70,6 +70,8 @@ if __name__ == "__main__":
     mlflow.spark.log_model(model,"spark-model")
     mlflow.log_metric("f1_weighted",f1)
 
+    spark.stop()
+
 
 
 
