@@ -1,5 +1,6 @@
 import mlflow
 import mlflow.spark
+import mlflow.pyspark.ml
 import logging
 from pyspark.sql import SparkSession
 from pyspark.ml.tuning import TrainValidationSplit
@@ -28,9 +29,9 @@ if __name__ == "__main__":
              .master("yarn") \
              .getOrCreate())
 
- mlflow.set_registry_uri("http://localhost:8000")
- mlflow.set_tracking_uri("http://localhost:8000")
+ mlflow.set_tracking_uri("file://home/alexey_kvashnin/mlruns")
  mlflow.spark.autolog()
+ mlflow.pyspark.ml.autolog()
 
 
 
@@ -70,7 +71,7 @@ if __name__ == "__main__":
     f1=evaluator.evaluate(predictions)
 
     mlflow.spark.save_model(model,"spark-model",mflow_model="spark-model")
-    mlflow.spark.log_model(model,"spark-model")
+    mlflow.spark.log_model(model,"spark-model",registered_model_name="spark-model")
     mlflow.log_metric("f1_weighted",f1)
 
     spark.stop()
