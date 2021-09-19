@@ -30,20 +30,23 @@ if __name__ == "__main__":
 
  mlflow.set_registry_uri("http://localhost:8000")
  mlflow.set_tracking_uri("http://localhost:8000")
+ mlflow.spark.autolog()
 
 
- try:
-   mlflow.spark.autolog()
-   data = spark.read.load("/user/alexey_kvashnin/inputData.parquet")
-   cleansed_data = data.withColumn("text_cleaned",regexp_replace(col("text"),"[^a-zA-Z0-9]+", " "))
- except Exception as e:
-         logger.exception(
-             "Unable to read training & test data. Error: %s", e
-         )
 
- train, test = cleansed_data.randomSplit([0.75, 0.25], seed=12345)
 
  with mlflow.start_run() as active_run:
+
+    try:
+
+       data = spark.read.load("/user/alexey_kvashnin/inputData.parquet")
+       cleansed_data = data.withColumn("text_cleaned",regexp_replace(col("text"),"[^a-zA-Z0-9]+", " "))
+    except Exception as e:
+             logger.exception(
+                 "Unable to read training & test data. Error: %s", e
+             )
+
+    train, test = cleansed_data.randomSplit([0.75, 0.25], seed=12345)
 
     indexer = StringIndexer(inputCol="Product", outputCol="label")
     tokenizer = RegexTokenizer(inputCol="text_cleaned",outputCol="words",toLowercase=True,minTokenLength=3)
