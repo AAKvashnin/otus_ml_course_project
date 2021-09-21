@@ -29,7 +29,7 @@ if __name__ == "__main__":
              .master("yarn") \
              .getOrCreate())
 
- mlflow.set_tracking_uri("file:///home/alexey_kvashnin/mlruns")
+ mlflow.set_tracking_uri("http://localhost:8000")
  mlflow.spark.autolog()
  mlflow.pyspark.ml.autolog()
 
