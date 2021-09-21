@@ -29,8 +29,6 @@ if __name__ == "__main__":
              .master("yarn") \
              .getOrCreate())
 
- mlflow.set_tracking_uri("./mlruns")
- mlflow.set_registry_uri("http://localhost:8000")
  mlflow.spark.autolog()
  mlflow.pyspark.ml.autolog()
 
