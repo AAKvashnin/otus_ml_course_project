@@ -29,12 +29,6 @@ def parse_args():
         default=0.3,
         help="Param for regularization parameter",
     )
-    parser.add_argument(
-        "--elastic-net-param",
-        type=float,
-        default=0.8,
-        help="Param for the ElasticNet mixing parameter",
-    )
     return parser.parse_args()
 
 def main():
@@ -83,7 +77,7 @@ def main():
        tf2=HashingTF(numFeatures=30000,inputCol="ngram_2",outputCol="tf_out_2")
        idf=IDF(minDocFreq=3,inputCol="tf_out",outputCol="idf_out")
        idf2=IDF(minDocFreq=3,inputCol="tf_out_2",outputCol="idf_out_2")
-       lr = LogisticRegression(maxIter=args.max_iter,regParam=args.reg_param ,elasticNetParam=args.elastic_net_param )
+       lr = LogisticRegression(maxIter=args.max_iter,regParam=args.reg_param)
        ngram=NGram(n=2,inputCol="words_swr",outputCol="ngram_2")
        assembler=VectorAssembler(inputCols=["idf_out","idf_out_2"],outputCol="features")
 

@@ -8,5 +8,6 @@ entry_points:
     parameters:
        max_iter: {type: int, default: 10}
        reg_param: {type: float, default: 0.3}
-       elastic_net_param: {type: float, default: 0.8}
     command: "python mlflow/train.py"
+  register:
+    command: "python mlflow/register.py"
