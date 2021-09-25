@@ -1,2 +1,2 @@
 #!/bin/bash
-mlflow server --backend-store-uri postgresql://mlflow_user:mlflow@localhost/mlflow_db --default-artifact-root gs://dataproc-staging-europe-central2-95432992361-dyzwukmc/mlflow_artifacts -h 0.0.0.0 -p 8000
+mlflow server --backend-store-uri postgresql://mlflow_user:mlflow@localhost/mlflow_db --default-artifact-root gs://course_project_mlflow_artifacts/mlflow_artifacts -h 0.0.0.0 -p 8000
