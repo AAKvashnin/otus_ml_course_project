@@ -29,13 +29,14 @@ if __name__ == "__main__":
              .master("yarn") \
              .getOrCreate())
 
+
  mlflow.spark.autolog()
  mlflow.pyspark.ml.autolog()
 
 
 
 
- with mlflow.start_run() as active_run:
+ with mlflow.start_run(experiment_id="1") as active_run:
 
     artifact_uri = mlflow.get_artifact_uri()
     print("Artifact uri: {}".format(artifact_uri))
