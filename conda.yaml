@@ -7,4 +7,4 @@ dependencies:
   - pip:
       - mlflow>=1.6
       - pyspark
-      - pysftp
+      - google-cloud-storage
