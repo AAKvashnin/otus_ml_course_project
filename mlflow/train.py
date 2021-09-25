@@ -7,7 +7,7 @@ from pyspark.sql import SparkSession
 from pyspark.ml.tuning import TrainValidationSplit
 from pyspark.ml import Pipeline
 from pyspark.ml.classification import LogisticRegression
-from pyspark.ml.feature import HashingTF,Tokenizer,StringIndexer,RegexTokenizer,IDF,StopWordsRemover,NGram,VectorAssembler
+from pyspark.ml.feature import HashingTF,Tokenizer,StringIndexer,RegexTokenizer,IDF,StopWordsRemover,NGram,VectorAssembler,IndexToString
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.sql.functions import regexp_replace,col
 
@@ -70,7 +70,7 @@ def main():
 
        train, test = cleansed_data.randomSplit([0.75, 0.25], seed=12345)
 
-       indexer = StringIndexer(inputCol="Product", outputCol="label")
+       indexer = StringIndexer(inputCol="Product", outputCol="label").fit(train)
        tokenizer = RegexTokenizer(inputCol="text_cleaned",outputCol="words",toLowercase=True,minTokenLength=3)
        swr=StopWordsRemover(inputCol="words",outputCol="words_swr")
        tf=HashingTF(numFeatures=30000,inputCol="words_swr",outputCol="tf_out")
@@ -80,10 +80,10 @@ def main():
        lr = LogisticRegression(maxIter=args.max_iter,regParam=args.reg_param)
        ngram=NGram(n=2,inputCol="words_swr",outputCol="ngram_2")
        assembler=VectorAssembler(inputCols=["idf_out","idf_out_2"],outputCol="features")
+       ind2Str=IndexToString(inputCol="label",outputCol="Product_out",labels=indexer.getLabels())
 
 
-
-       pipeline=Pipeline(stages=[indexer,tokenizer,swr,ngram,tf,idf,tf2,idf2,assembler,lr])
+       pipeline=Pipeline(stages=[indexer,tokenizer,swr,ngram,tf,idf,tf2,idf2,assembler,lr,ind])
        model = pipeline.fit(train)
 
        predictions=model.transform(test)
