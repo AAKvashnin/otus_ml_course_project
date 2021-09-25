@@ -1,6 +1,5 @@
 import mlflow
 import pandas as pd
-import mlflow.spark
 
 df = mlflow.search_runs(0, order_by=["metrics.f1_weighted DESC"])
 print(df)
