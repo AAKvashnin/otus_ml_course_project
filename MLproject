@@ -8,6 +8,8 @@ entry_points:
     parameters:
        max_iter: {type: int, default: 10}
        reg_param: {type: float, default: 0.3}
-    command: "python mlflow/train.py"
+    command: "python mlflow/train.py  {max_iter} {reg_param}"
   register:
-    command: "python mlflow/register.py {max_iter} {reg_param}"
+    command: "python mlflow/register.py"
+  unregister:
+    command: "python mlflow/unregister.py"
