@@ -37,6 +37,10 @@ if __name__ == "__main__":
 
  with mlflow.start_run() as active_run:
 
+    artifact_uri = mlflow.get_artifact_uri()
+    print("Artifact uri: {}".format(artifact_uri))
+
+
     try:
 
        data = spark.read.load("/user/alexey_kvashnin/inputData.parquet")
