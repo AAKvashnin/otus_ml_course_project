@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
 
 
- with mlflow.start_run(experiment_id="2") as active_run:
+ with mlflow.start_run() as active_run:
 
     mlflow.spark.autolog()
     mlflow.pyspark.ml.autolog()
