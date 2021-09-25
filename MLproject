@@ -5,4 +5,8 @@ conda_env: conda.yaml
 entry_points:
   # train Spark model
   main:
+    parameters:
+       max_iter: {type: int, default: 10}
+       reg_param: {type: float, default: 0.3}
+       elastic_net_param: {type: float, default: 0.8}
     command: "python mlflow/train.py"
