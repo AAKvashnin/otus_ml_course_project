@@ -25,7 +25,6 @@ if __name__ == "__main__":
              .config("spark.hadoop.yarn.timeline-service.enabled","false") \
              .config("spark.submit.deployMode","client") \
              .config("spark.jars.packages", "org.mlflow:mlflow-spark:1.11.0") \
-             .config("spark.jars.packages", "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.2") \
              .config("spark.executor.instances","10") \
              .master("yarn") \
              .getOrCreate())
