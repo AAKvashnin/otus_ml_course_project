@@ -83,7 +83,7 @@ def main():
        ind2Str=IndexToString(inputCol="label",outputCol="Product_out",labels=indexer.labels)
 
 
-       pipeline=Pipeline(stages=[indexer,tokenizer,swr,ngram,tf,idf,tf2,idf2,assembler,lr,ind])
+       pipeline=Pipeline(stages=[indexer,tokenizer,swr,ngram,tf,idf,tf2,idf2,assembler,lr,ind2Str])
        model = pipeline.fit(train)
 
        predictions=model.transform(test)
