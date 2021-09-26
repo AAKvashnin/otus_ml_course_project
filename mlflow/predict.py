@@ -51,18 +51,15 @@ def main():
     mlflow.spark.autolog()
     mlflow.pyspark.ml.autolog()
 
-
-    data = spark.read.load(args.test_data)
+    data = spark.read.load(args.test_data.strip("'"))
 
     cleansed_data = data.withColumn("text_cleaned",regexp_replace(col("text"),"[^a-zA-Z0-9]+", " "))
-
-
 
     model=mlflow.spark.load_model("models:/Complaint classification model/1")
 
     predictions=model.transform(cleansed_data).select(col("text"),col("Product_out").alias("Product"))
 
-    predictions.write.save(args.result_data)
+    predictions.write.save(args.result_data.strip("'"))
 
     spark.stop()
 
