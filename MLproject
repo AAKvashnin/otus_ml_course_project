@@ -19,6 +19,6 @@ entry_points:
     command: "python mlflow/explain.py"
   predict:
     parameters:
-       test_data: uri
-       result_data: uri
+       test_data: string
+       result_data: string
     command: "python mlflow/predict.py --test-data {test_data} --result-data {result_data}"
