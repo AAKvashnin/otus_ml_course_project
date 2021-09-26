@@ -1,0 +1,1 @@
+curl http://34.107.17.103:5000/invocations -H 'Content-Type: application/json' -d '{"columns":["text_cleaned"], "data":[["finance"]] }'
