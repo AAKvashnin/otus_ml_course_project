@@ -3,7 +3,7 @@ import mlflow.spark
 from pyspark.sql import SparkSession
 import logging
 import argparse
-from pyspark.sql.functions import regexp_replace,col
+from pyspark.sql.functions import regexp_replace,col,alias
 
 
 
@@ -59,7 +59,7 @@ def main():
 
     model=mlflow.spark.load_model("models:/Complaint classification model/1")
 
-    predictions=model.transform(data).select(col("text"),col("Product_out").as("Product"))
+    predictions=model.transform(data).select(col("text"),col("Product_out").alias("Product"))
 
     predictions.write.save(args.result_data)
 
