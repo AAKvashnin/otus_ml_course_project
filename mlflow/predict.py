@@ -3,6 +3,8 @@ import mlflow.spark
 from pyspark.sql import SparkSession
 import logging
 import argparse
+from pyspark.sql.functions import regexp_replace,col
+
 
 
 logging.basicConfig(level=logging.WARN)
