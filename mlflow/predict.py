@@ -14,12 +14,12 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Spark example")
     parser.add_argument(
         "--test-data",
-        type=string,
+        type=ascii,
         help="Param for test data path",
     )
     parser.add_argument(
         "--result-data",
-        type=string,
+        type=ascii,
         help="Param for result data path",
     )
     return parser.parse_args()
