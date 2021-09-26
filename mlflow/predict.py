@@ -53,10 +53,8 @@ def main():
 
               data = spark.read.load(args.test_data)
               cleansed_data = data.withColumn("text_cleaned",regexp_replace(col("text"),"[^a-zA-Z0-9]+", " "))
-           except Exception as e:
-                    logger.exception(
-                        "Unable to read training & test data. Error: %s", e
-                    )
+    except Exception as e:
+              logger.exception("Unable to read training & test data. Error: %s", e)
 
 
     model=mlflow.spark.load_model("models:/Complaint classification model/1")
