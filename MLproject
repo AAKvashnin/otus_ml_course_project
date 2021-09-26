@@ -13,3 +13,10 @@ entry_points:
     command: "python mlflow/register.py"
   unregister:
     command: "python mlflow/unregister.py"
+  validate:
+    command: "python mlflow/validate.py"
+  predict:
+    parameters:
+       test_data: path
+       result_data: path
+    command: "python mlflow/predict.py --test-data {test_data} --result_data {result_data}"

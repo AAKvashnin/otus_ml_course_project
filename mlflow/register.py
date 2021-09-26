@@ -1,7 +1,8 @@
 import mlflow
 import pandas as pd
 
-df = mlflow.search_runs(0, order_by=["metrics.f1_weighted DESC"])
+filter_string="tags.mlflow.project.entryPoint='main'"
+df = mlflow.search_runs(0, filter_string=filter_string, order_by=["metrics.f1_weighted DESC"])
 print(df)
 run_id=df.loc[df['metrics.f1_weighted'].idxmax()]['run_id']
 
