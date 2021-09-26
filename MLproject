@@ -21,4 +21,4 @@ entry_points:
     parameters:
        test_data: path
        result_data: path
-    command: "python mlflow/predict.py --test-data {test_data} --result_data {result_data}"
+    command: "python mlflow/predict.py --test-data {test_data} --result-data {result_data}"
