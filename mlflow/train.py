@@ -80,7 +80,7 @@ def main():
        lr = LogisticRegression(maxIter=args.max_iter,regParam=args.reg_param)
        ngram=NGram(n=2,inputCol="words_swr",outputCol="ngram_2")
        assembler=VectorAssembler(inputCols=["idf_out","idf_out_2"],outputCol="features")
-       ind2Str=IndexToString(inputCol="label",outputCol="Product_out",labels=indexer.labels)
+       ind2Str=IndexToString(inputCol="prediction",outputCol="Product_out",labels=indexer.labels)
 
 
        pipeline=Pipeline(stages=[indexer,tokenizer,swr,ngram,tf,idf,tf2,idf2,assembler,lr,ind2Str])
