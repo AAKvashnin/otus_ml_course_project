@@ -30,6 +30,8 @@ def main():
 
   args = parse_args()
 
+  print(args)
+
 
 
   spark=(SparkSession.builder \
