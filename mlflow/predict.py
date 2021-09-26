@@ -59,7 +59,7 @@ def main():
 
     model=mlflow.spark.load_model("models:/Complaint classification model/1")
 
-    predictions=model.transform(data).select(col("text"),col("Product_out").alias("Product"))
+    predictions=model.transform(cleansed_data).select(col("text"),col("Product_out").alias("Product"))
 
     predictions.write.save(args.result_data)
 
